@@ -17,24 +17,37 @@ class Main {
 		Scanner sc = new Scanner(System.in);
 
 		boolean fecha = false;
-		int opcao, n1, n2;
+		int opcao, n1=0, n2=0;
 
 		while (!fecha) {
 
 			opcao = escolheOpcao();
 
+			if (opcao>=1 && opcao<=4) {
+				n1 = getNumero();
+				n2 = getNumero();
+			}
+
 			switch (opcao) {
 				case 1: //1 - Multiplicação de inteiros
 					System.out.println("*** Multiplicação de inteiros ***\n");
+					System.out.println("    O resultado da operação é >> " + n1*n2 + "\n");
 					break;
 				case 2: //2 - Divisão de inteiros
 					System.out.println("*** Divisão de inteiros ***\n");
+					if (n2==0) {
+						System.out.println("Não é possível realizar uma divisão por zero!\n");
+					} else {
+						System.out.println("    O resultado da operação é >> " + n1/n2 + "\n");
+					}
 					break;
 				case 3: //3 - Adição de inteiros
 					System.out.println("*** Adição de inteiros ***\n");
+					System.out.println("    O resultado da operação é >> " + (n1+n2) + "\n");
 					break;
 					case 4: //4 - Subtração de inteiros
 					System.out.println("*** Subtração de inteiros ***\n");
+					System.out.println("    O resultado da operação é >> " + (n1-n2) + "\n");
 					break;
 				case 5: //5 – Sair do programa
 					System.out.println("*** OBRIGADO. VOLTE SEMPRE!!! ***");
@@ -48,15 +61,26 @@ class Main {
 	public static int escolheOpcao() {
 		Scanner sc = new Scanner(System.in);
 		int o=0;
-		
 		try {
-			System.out.println("*** Escolha uma opção ***\n   1 - Multiplicação de inteiros\n   2 - Divisão de inteiros\n   3 - Adição de inteiros\n   4 - Subtração de inteiros\n   5 - Sair do programa");
+			System.out.print("*** Escolha uma opção ***\n    1 - Multiplicação de inteiros\n    2 - Divisão de inteiros\n    3 - Adição de inteiros\n    4 - Subtração de inteiros\n    5 - Sair do programa\n>> ");
 			o = sc.nextInt();
 		} catch (InputMismatchException erro1) {
 			System.out.println("Digite uma opção válida!");
 			sc.nextLine();
 		}
-
 		return o;
+	}
+
+	public static int getNumero() {
+		Scanner sc = new Scanner(System.in);
+		int n=0;
+		try {
+			System.out.print("Informe um número inteiro >> ");
+			n = sc.nextInt();
+		} catch (InputMismatchException erro1) {
+			System.out.println("Digite um número inteiro!");
+			sc.nextLine();
+		}
+		return n;
 	}
 }
